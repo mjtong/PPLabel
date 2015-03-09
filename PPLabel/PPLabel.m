@@ -66,7 +66,11 @@
         NSMutableParagraphStyle* paragraphStyle = [value mutableCopy];
         
         if ([paragraphStyle lineBreakMode] == kCTLineBreakByTruncatingTail) {
+#if CTM_OLD
             [paragraphStyle setLineBreakMode:kCTLineBreakByWordWrapping];
+#else
+            [paragraphStyle setLineBreakMode:NSLineBreakByWordWrapping];
+#endif
         }
         
         [optimizedAttributedText removeAttribute:(NSString*)kCTParagraphStyleAttributeName range:range];
